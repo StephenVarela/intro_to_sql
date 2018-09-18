@@ -1,0 +1,100 @@
+#1
+SELECT name FROM robots WHERE(source= 'Star Wars');
+
+name
+------
+C3PO
+R2D2
+(2 rows)
+
+#2
+SELECT name FROM robots where(personality='anxious');
+
+name
+------
+C3PO
+(1 row)
+
+#3
+SELECT name from recipes where(nut_free=true);
+
+name
+-------------------------------------------
+Butternut Squash Bake
+Vegetarian Bibimbap
+French Veggie Loaf
+Quinoa and Black Beans
+Juicy Roasted Chicken
+Garlic Green Beans
+Stout Slow Cooker Corned Beef and Veggies
+
+#4
+SELECT COUNT(*) FROM recipes WHERE(gluten_free=true AND vegetarian=false);
+
+count
+-------
+    2
+(1 row)
+
+#5
+SELECT name,number_of_legs FROM animals WHERE(number_of_legs=(SELECT MAX(number_of_legs) FROM animals));
+
+name   | number_of_legs
+---------+----------------
+octopus |              8
+(1 row)
+
+#6
+SELECT name,mins_to_play FROM board_games  WHERE(mins_to_play= (SELECT MIN(mins_to_play) FROM board_games));
+name   | mins_to_play
+----------+--------------
+Sushi Go |           15
+Quixo    |           15
+(2 rows)
+
+#7
+SELECT name FROM recipes WHERE(minutes_required=(SELECT MAX(minutes_required) FROM recipes));
+name
+-------------------------------------------
+Stout Slow Cooker Corned Beef and Veggies
+(1 row)
+
+
+#8
+SELECT name FROM robots WHERE(name LIKE 'M%');
+
+name
+----------------
+Marvin
+Mr. Butlertron
+(2 rows)
+
+
+#9
+SELECT COUNT(*) from board_games WHERE(max_players>=8 AND min_players<=8);
+count
+-------
+    3
+(1 row)
+
+#10
+SELECT name from animals WHERE(swimming=true AND egg_laying=true);
+name
+---------
+octopus
+duck
+(2 rows)
+
+#11
+SELECT name from animals WHERE(swimming=true AND egg_laying=true AND flying=false);
+name
+---------
+octopus
+(1 row)
+
+SELECT name,max_players FROM board_games WHERE(max_players= (SELECT MAX(max_players) FROM board_games));
+
+name          | max_players
+------------------------+-------------
+Cards Against Humanity |          30
+(1 row)
